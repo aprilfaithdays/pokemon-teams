@@ -16,28 +16,37 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function showTrainer(json) {
-        let div = document.createElement('div')
         return json.forEach(trainer => { 
+            let div = document.createElement('div')
             // console.log(trainer)
             div.innerHTML = ` 
             <div class ='card' data-id="${trainer.id}"><p>${trainer.name}</p>
+            <button data-trainer-id="1">Add Pokemon</button>
             ${showPokemon(trainer.pokemons)}
-
             </div>
             `
             main.appendChild(div)
+            // console.log(div)
         });
     }
 
     function showPokemon(pokemons){
-        let li = document.createElement('li')
         let ul = document.createElement('ul')
-        
-        return pokemons.forEach(pokemon =>
-            console.log(pokemon.nickname)
-            // li.innerHTML = `${pokemon.nickname} (${pokemon.species})`
-        )
+        pokemons.forEach(pokemon => {
+            let li = document.createElement('li')
+            li.innerHTML = `${pokemon.nickname} (${pokemon.species})<button class="release" data-pokemon-id="${pokemon.id}">Release</button>
+            `
+            ul.appendChild(li)
+        })
+        // console.log(ul)
+        return ul.innerHTML
     }
+    
+    let card = document.getElementById('card')
+    card.addEventListener('click', function(e) {
+
+    })
+
     
 
 })
